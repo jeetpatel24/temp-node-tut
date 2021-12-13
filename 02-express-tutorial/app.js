@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
 const logger = require('./logger')
+const authorize = require('./authorize')
 
 // req =>  middleware => res
 
-app.use(logger); //to automatically use logger in every api
+app.use([authorize, logger]);
 
 app.get('/', (req, res) => {
     res.send('<h1>Home Page</h1>');
